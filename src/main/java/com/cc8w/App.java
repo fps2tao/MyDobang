@@ -13,6 +13,6 @@ public class App
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
     	Test01 tt01 = (Test01) context.getBean("Test01");
-    	System.out.println( tt01);
+    	System.out.println(tt01);
     }
 }
