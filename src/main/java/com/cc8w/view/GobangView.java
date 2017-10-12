@@ -23,6 +23,7 @@ public class GobangView extends JFrame {
 		winHeight = (int) getToolkit().getScreenSize().getHeight();
 		this.setTitle("五子棋 V1.0");
 		this.setSize(gobang_size_width, gobang_size_height);
+		//这句话有潜在风险，当屏幕小于500像素，下面语句有报错可能
 		this.setLocation((winWidth-gobang_size_width)/2, (winHeight-gobang_size_height)/2);
 		this.setVisible(true);
 		this.addWindowListener(new GobangWinAdapter());
