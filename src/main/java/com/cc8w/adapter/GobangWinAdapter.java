@@ -3,12 +3,20 @@ package com.cc8w.adapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class GobangWinAdapter extends WindowAdapter {
+import com.cc8w.view.GobangView;
 
+public class GobangWinAdapter extends WindowAdapter {
+	public GobangView gv=null;
+	public GobangWinAdapter(GobangView g)
+	{
+		this.gv = g;
+	}
 	@Override
 	public void windowActivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 		super.windowActivated(arg0);
+		gv.repaint();
+		
 	}
 
 	@Override

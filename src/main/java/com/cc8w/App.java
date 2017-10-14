@@ -17,5 +17,7 @@ public class App
     	//Test01 tt01 = (Test01) context.getBean("Test01");
     	//System.out.println(tt01);
     	GobangView gv = new GobangView();
+    	
+
     }
 }
