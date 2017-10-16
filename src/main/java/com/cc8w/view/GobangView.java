@@ -25,6 +25,9 @@ public class GobangView extends JFrame {
 	public static int _x=0;//x轴起始点
 	public static int _y=0;//y轴起始点
 	public static int _gap = 20;//方框间隔
+	public static boolean _flag = true;//棋子的颜色
+	public static int point_size_width = 10;//棋子大小
+	public static int point_size_height = 10;//棋子大小
 	
 	public GobangView()
 	{
@@ -35,21 +38,21 @@ public class GobangView extends JFrame {
 		this.setSize(gobang_size_width, gobang_size_height);
 		//这句话有潜在风险，当屏幕小于500像素，下面语句有报错可能
 		this.setLocation((winWidth-gobang_size_width)/2, (winHeight-gobang_size_height)/2);
-		this.setVisible(true);	
+		
 		this.addWindowListener(new GobangWinAdapter(this));
-		this.addKeyListener(new GobangKeyAdapter());
-		this.addMouseListener(new GobangMouseAdapter());
-		this.repaint();	
+		this.addKeyListener(new GobangKeyAdapter(this));
+		this.addMouseListener(new GobangMouseAdapter(this));
+		this.setVisible(true);	
 	}
 	@Override
 	public void paint(Graphics pg) {
-		super.paint(pg);
+		
 		pg.setColor(Color.RED);		
 		for(int i=0;i<=(gobang_grid_height/_gap);i++)
 		{
 			pg.drawLine((_x+i)*_gap+offsetNum, _y+offsetNum, (_x+i)*_gap+offsetNum, gobang_grid_height+offsetNum);
 			pg.drawLine(_x+offsetNum, (_y+i)*_gap+offsetNum, gobang_grid_width+offsetNum,(_y+i)*_gap+offsetNum);
-		}		
+		}
 	}
 	
 

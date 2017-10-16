@@ -14,7 +14,8 @@ public class GobangWinAdapter extends WindowAdapter {
 	@Override
 	public void windowActivated(WindowEvent arg0) {
 		// TODO Auto-generated method stub
-		super.windowActivated(arg0);
+		//super.windowActivated(arg0);
+		System.out.println("我被激活了");
 		gv.repaint();
 		
 	}
