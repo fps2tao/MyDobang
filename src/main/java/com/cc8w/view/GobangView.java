@@ -25,7 +25,7 @@ public class GobangView extends JFrame {
 	public static int _x=0;//x轴起始点
 	public static int _y=0;//y轴起始点
 	public static int _gap = 20;//方框间隔
-	public static boolean _flag = true;//棋子的颜色
+	public static boolean _flag = true;//棋子的颜色 真空心圆，假实心圆
 	public static int point_size_width = 10;//棋子大小
 	public static int point_size_height = 10;//棋子大小
 	

@@ -32,9 +32,9 @@ public class GobangController {
 		
 		return ws;
 	}
-	//是否越界
+	
 	public static boolean isTransboundary(int x,int y)
-	{
+	{//是否越界
 		int ws[] = GobangController.workSpace();
 		int _u = ws[0];
 		int _r = ws[1];
@@ -52,26 +52,74 @@ public class GobangController {
 			return false;	
 		}		
 	}
+	/**
+	 * 
+	 * @param pg 画笔
+	 * @param x 画笔画圆x位置
+	 * @param y 画笔画圆y位置
+	 * @param falg 画圆是棋子颜色 - 真空心圆，假实心圆， 黑棋（2），白旗（1），空白（0）
+	 */
 	public void dropPoint(Graphics pg,int x,int y,boolean falg)
 	{//落点 真为白点，假为黑点
+		Point pt = focusXY(x,y); 
 		
 		if(falg)
 		{
-			pg.drawOval(x, y, GobangView.point_size_width, GobangView.point_size_height);
+			pg.drawOval(pt.x, pt.y, GobangView.point_size_width, GobangView.point_size_height);
 			GobangView._flag = false;
 		}
 		else
 		{
-			pg.fillOval(x, y, GobangView.point_size_width, GobangView.point_size_height);
+			pg.fillOval(pt.x, pt.y, GobangView.point_size_width, GobangView.point_size_height);
 			GobangView._flag = true;
 		}
 		
 	}
-	public Point focusXY()
+	/**
+	 * 
+	 * @param x 鼠标点击x
+	 * @param y 鼠标点击y
+	 * @return Point:返回校正后的x，y用Point返回
+	 */
+	public Point focusXY(int x,int y)
 	{//鼠标随机落点，一定要落在十字线上（此方法就是校对落点位置的）
-		Point pt = new Point();
-		
+		int pointX = 0;
+		int pointY= 0;
+		//(GobangView.gobang_grid_width + GobangView.offsetNum)/GobangView._gap
+		int xCount = (x-GobangView.offsetNum)/GobangView._gap;
+		int yCount = (y-GobangView.offsetNum)/GobangView._gap;		
+		pointX = (xCount*GobangView._gap)+GobangView.offsetNum;
+		int pointX1 = ((xCount+1)*GobangView._gap)+GobangView.offsetNum;
+		if(Math.abs(pointX-x)>Math.abs(pointX1-x))
+		{
+			pointX = pointX1;
+		}		
+		pointY = (yCount*GobangView._gap)+GobangView.offsetNum;
+		int pointY1 = ((yCount+1)*GobangView._gap)+GobangView.offsetNum;
+		if(Math.abs(pointY-y)>Math.abs(pointY1-y))
+		{
+			pointY = pointY1;
+		}		
+		Point pt = new Point(pointX-5,pointY-5);
 		return pt;
+	}
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @param _flag 当前判断 _flag为真，为假
+	 * @return true 赢  ，false 输
+	 */
+	public boolean isWin(int x,int y,boolean _flag)
+	{//判断输赢
+		int xCount;
+		int yCount;
+		//横向判断
+		//纵向判断
+		//斜向判断
+		
+		
+		return false;		
 	}
 	
 	
