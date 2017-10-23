@@ -3,6 +3,7 @@ package com.cc8w.controller;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import com.cc8w.dao.GobangDao;
 import com.cc8w.view.GobangView;
 
 //游戏的一些逻辑操作
@@ -61,16 +62,22 @@ public class GobangController {
 	 */
 	public void dropPoint(Graphics pg,int x,int y,boolean falg)
 	{//落点 真为白点，假为黑点
-		Point pt = focusXY(x,y); 
+		Point pt = focusXY(x,y);
+		GobangDao gbd1 = GobangDao.getInstance();//单例模式只能这样实例化
 		
+		Point arr_pt = getGobangArr(pt.x,pt.y);//棋盘二维数组坐标值
 		if(falg)
 		{
 			pg.drawOval(pt.x, pt.y, GobangView.point_size_width, GobangView.point_size_height);
+			//存值
+			gbd1.setGobang(arr_pt.x, arr_pt.y, falg);
 			GobangView._flag = false;
 		}
 		else
 		{
 			pg.fillOval(pt.x, pt.y, GobangView.point_size_width, GobangView.point_size_height);
+			//存值
+			gbd1.setGobang(arr_pt.x, arr_pt.y, falg);
 			GobangView._flag = true;
 		}
 		
@@ -115,11 +122,20 @@ public class GobangController {
 		int xCount;
 		int yCount;
 		//横向判断
+		
 		//纵向判断
+		
 		//斜向判断
 		
 		
 		return false;		
+	}
+	public Point getGobangArr(int x,int y)
+	{//返回棋盘数组
+		int arr_x = (x-GobangView.offsetNum)/GobangView._gap;
+		int arr_y = (y-GobangView.offsetNum)/GobangView._gap;		
+		Point pt = new Point(arr_x,arr_y);//因为数组从0开始，这个计算是1，校正下
+		return pt;
 	}
 	
 	
