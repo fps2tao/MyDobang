@@ -66,11 +66,13 @@ public class GobangController {
 		GobangDao gbd1 = GobangDao.getInstance();//单例模式只能这样实例化
 		
 		Point arr_pt = getGobangArr(pt.x,pt.y);//棋盘二维数组坐标值
+		//System.out.println(arr_pt.x+"--"+arr_pt.y);
 		if(falg)
 		{
 			pg.drawOval(pt.x, pt.y, GobangView.point_size_width, GobangView.point_size_height);
 			//存值
 			gbd1.setGobang(arr_pt.x, arr_pt.y, falg);
+			
 			GobangView._flag = false;
 		}
 		else
@@ -132,8 +134,9 @@ public class GobangController {
 	}
 	public Point getGobangArr(int x,int y)
 	{//返回棋盘数组
-		int arr_x = (x-GobangView.offsetNum)/GobangView._gap;
-		int arr_y = (y-GobangView.offsetNum)/GobangView._gap;		
+		//System.out.println(x+"--"+y);
+		int arr_x = ((x-GobangView.offsetNum+30)/GobangView._gap)-1;//为什么会加30呢，因为窗口的标题栏占30px..
+		int arr_y = ((y-GobangView.offsetNum+30)/GobangView._gap)-1;//为什么减1呢，这个是一个个数，不为零，数组是从零开始的		
 		Point pt = new Point(arr_x,arr_y);//因为数组从0开始，这个计算是1，校正下
 		return pt;
 	}

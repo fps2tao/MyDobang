@@ -11,8 +11,8 @@ public class GobangDao {
 		if(gbd ==null)
 		{
 			gbd = new GobangDao();			
-			int curX=(GobangView.gobang_grid_width/GobangView._gap);
-			int cury=(GobangView.gobang_grid_height/GobangView._gap);
+			int curX=(GobangView.gobang_grid_width/GobangView._gap)+1;
+			int cury=(GobangView.gobang_grid_height/GobangView._gap)+1;
 			arr = new int[curX][cury];
 		}
 		return gbd;
