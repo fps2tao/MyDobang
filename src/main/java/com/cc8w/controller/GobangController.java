@@ -116,15 +116,30 @@ public class GobangController {
 	 * 
 	 * @param x
 	 * @param y
-	 * @param _flag 当前判断 _flag为真，为假
+	 * @param _flag 当前判断 _flag为真白旗1，为假，黑棋2
 	 * @return true 赢  ，false 输
 	 */
 	public boolean isWin(int x,int y,boolean _flag)
 	{//判断输赢
-		int xCount;
-		int yCount;
+		int qi=2;
+		if(_flag)qi=1;
+		int counter = 0;//计数器
+		//判断算法：以当点为中心前后各取5个点循环判断有没有相同的值，中间值空了，计数器清零，只有连续5个的计数器累加>=5跳出
 		//横向判断
-		
+		for(int j=-5;j<=10;j++)
+		{
+			if ((y+j)<0)continue;//防止越界
+			if(GobangDao.arr[x][y+j]==qi)
+			{
+				counter = counter+1;
+				break;
+			}
+			else
+			{
+				counter=0;
+			}
+			
+		}
 		//纵向判断
 		
 		//斜向判断
